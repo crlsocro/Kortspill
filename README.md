@@ -1,7 +1,10 @@
 //TODO
 [] - Create standard deck of cards
+
 [] - Select player amount(2-4)
+
 [] - Make AI players
+
 [] - Deal 4 cards
 [] - Make vulture card(player gets one extra card)
 [] - Make bomb card(player loses all cards and gets 4 new cards)
