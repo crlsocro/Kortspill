@@ -1,8 +1,8 @@
 //TODO
 
-[] - Create standard deck of cards
+[x] - Create standard deck of cards
 
-[] - Select player amount(2-4)
+[x] - Select player amount(2-4)
 
 [] - Make AI players
 
