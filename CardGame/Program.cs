@@ -8,9 +8,10 @@ namespace CardGame
 
         static void Main(string[] args)
         {
-            Console.WriteLine("How many total players do you want? (2-4)");
+            new 
+            /*Console.WriteLine("How many total players do you want? (2-4)");
              int amountOfPlayers = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine(amountOfPlayers);
+            Console.WriteLine(amountOfPlayers);*/
         }
     }
 }
