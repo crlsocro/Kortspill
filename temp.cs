@@ -1,12 +1,15 @@
 ﻿using System;
 
-public class cardGame
+namespace cardGame
 {
 
-	string[] players = { "Hagen", "Håkon", "Chris"};
+	public class deck(){
 
-	public void startGame()
-	{
+	string[] players = { "Hagen", "Håkon", "Chris" };
 
+		public void startGame()
+		{
+
+		}
 	}
 }
