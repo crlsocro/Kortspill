@@ -1,10 +1,10 @@
 ﻿
 public class Player
 {
-    public Player(string name)
+    public Player()
     {
-        string playerName = name; 
         string specials;
+
 
     }
 }
