@@ -5,8 +5,8 @@ namespace CardGame
 {
     class Program
     {
- 
- 
+
+        public string[] playerNames = { "Hagen", "Chris", "Håkon", "Ola", "Magnus Carlsen", "John Cena", "AleksiB" };
         static void Main(string[] args)
         {
 
@@ -31,7 +31,7 @@ namespace CardGame
             
         }
 
-        public void assignPlayers()
+        public static void assignPlayers()
         {
             Console.WriteLine("How many total players do you want? (2-4)");
             int amountOfPlayers = Convert.ToInt32(Console.ReadLine());

@@ -6,8 +6,8 @@ using static Card;
 public class Deck
 {
 
-	public string[] players = { "Hagen", "Chris", "Håkon" };
 	public List<Card> theDeck = new List<Card>();
+	//public List<Card> theDeck = new List<Card>();,
 
 	public List<Card> getDeck()
 	{

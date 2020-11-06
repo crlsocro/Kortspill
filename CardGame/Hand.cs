@@ -2,6 +2,8 @@
 
 public class Hand
 {
-	//Keep track of cards
-	//
+	public Hand(Player player)
+    {
+
+    }
 }
