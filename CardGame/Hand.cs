@@ -2,7 +2,6 @@
 
 public class Hand
 {
-	//Check victory
-	//Keep track of hands
+	//Keep track of cards
 	//
 }
