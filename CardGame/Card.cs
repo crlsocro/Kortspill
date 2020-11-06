@@ -4,11 +4,13 @@ public class Card
 {
     public Suit suit;
     public Rank rank;
+    public Specialty specialty;
 
-    public Card(Suit suit, Rank rank)
+    public Card(Suit suit, Rank rank, Specialty specialty)
     {
         this.suit = suit;
         this.rank = rank;
+        this.specialty = specialty;
     }
 
     public enum Suit{
@@ -37,6 +39,7 @@ public class Card
 
     public enum Specialty
     {
+        None,
         Vulture,
         Bomb,
         Quarantine,
