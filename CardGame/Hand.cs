@@ -2,7 +2,7 @@
 
 public class Hand
 {
-	public Hand(Player player)
+	public Hand()
     {
 
     }

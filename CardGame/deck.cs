@@ -9,7 +9,7 @@ public class Deck
 	public List<Card> theDeck = new List<Card>();
 	//public List<Card> theDeck = new List<Card>();,
 
-	public List<Card> getDeck()
+	public List<Card> createDeck()
 	{
 
 		//Storing all the cards
