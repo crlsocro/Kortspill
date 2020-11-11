@@ -12,10 +12,11 @@ namespace CardGame
         public static List<Player> players = new List<Player>();
         
         private static Deck deck = new Deck();
-        private static Player player1;
-        private static Player player2;
-        private static Player player3;
-        private static Player player4;
+        private static Player player1 = new Player();
+        private static Player player2 = new Player();
+        private static Player player3 = new Player();
+        private static Player player4 = new Player();
+        private static int amountOfCardsForEachPlayer = 4;
 
         static void Main(string[] args)
         {
@@ -23,8 +24,6 @@ namespace CardGame
 
             AssignPlayers();
             GameStart();
-            deck.createDeck();
-
 
             //Console.WriteLine(deck.getDeck());
             for (int i = 0; i < deck.theDeck.Count; i++)
@@ -39,8 +38,8 @@ namespace CardGame
                 }
             }
             Console.WriteLine(deck.theDeck.Count);
-            Console.WriteLine(player1.Hand[0].suit);
-            Console.WriteLine(player1.Hand[0].rank);
+            Console.WriteLine(players[0].playerHand[0].suit);
+            Console.WriteLine(players[0].playerHand[0].rank);
 
 
         }
@@ -49,17 +48,16 @@ namespace CardGame
 
         public static void dealInitialCards()
         {
-            for (int i = 0; i < amountOfPlayers; i++)
+            for (int i = 0; i < amountOfCardsForEachPlayer; i++)
             {
-                Random rnd = new Random();
-                int randomnum = rnd.Next();
-                player1.Hand.Add(deck.theDeck[randomnum]);
-                player2.Hand.Add(deck.theDeck[randomnum]);
-                player3.Hand.Add(deck.theDeck[randomnum]);
-                player4.Hand.Add(deck.theDeck[randomnum]);
-                //Card card = new
-                //Deck.theDeck[rnd];
-                //players[i].Hand.Add();
+                for (int j = 0; j < amountOfPlayers; j++)
+                {
+                    Random rnd = new Random();
+                    int randomnum = rnd.Next(0, deck.theDeck.Count);
+                    players[j].playerHand.Add(deck.theDeck[randomnum]);
+                    Console.WriteLine(deck.theDeck[randomnum]);
+                    deck.theDeck.RemoveAt(randomnum);
+                }
             }
         }
 
