@@ -38,8 +38,10 @@ namespace CardGame
                 }
             }
             Console.WriteLine(deck.theDeck.Count);
-            Console.WriteLine(players[0].playerHand[0].suit);
-            Console.WriteLine(players[0].playerHand[0].rank);
+            Console.WriteLine(players[0].ToString(players[0].playerHand[0]));
+            Console.WriteLine(players[0].ToString(players[0].playerHand[1]));
+            Console.WriteLine(players[0].ToString(players[0].playerHand[2]));
+            Console.WriteLine(players[0].ToString(players[0].playerHand[3]));
 
 
         }
