@@ -12,7 +12,7 @@ namespace CardGame
         public static List<Player> players = new List<Player>();
         
         private static Deck deck = new Deck();
-        private static Player player1 = new Player();
+        //private static Player player1 = new Player();
         private static Player player2 = new Player();
         private static Player player3 = new Player();
         private static Player player4 = new Player();
@@ -24,8 +24,10 @@ namespace CardGame
 
             AssignPlayers();
             GameStart();
+            CheckVictories();
+            //Console.WriteLine();
 
-            //Console.WriteLine(deck.getDeck());
+            /* Prints the entire deck
             for (int i = 0; i < deck.theDeck.Count; i++)
             {
                 if (deck.theDeck[i].specialty == (Specialty)0)
@@ -36,13 +38,14 @@ namespace CardGame
                 {
                     Console.WriteLine(deck.theDeck[i].suit + " " + deck.theDeck[i].rank + " " + deck.theDeck[i].specialty);
                 }
-            }
+            }*/
             Console.WriteLine(deck.theDeck.Count);
+            /* Prints the entire player hand
             Console.WriteLine(players[0].ToString(players[0].playerHand[0]));
             Console.WriteLine(players[0].ToString(players[0].playerHand[1]));
             Console.WriteLine(players[0].ToString(players[0].playerHand[2]));
             Console.WriteLine(players[0].ToString(players[0].playerHand[3]));
-
+            */
 
         }
 
@@ -55,7 +58,7 @@ namespace CardGame
                 for (int j = 0; j < amountOfPlayers; j++)
                 {
                     Random rnd = new Random();
-                    int randomnum = rnd.Next(0, deck.theDeck.Count);
+                    int randomnum = rnd.Next(0, deck.theDeck.Count +1);
                     players[j].playerHand.Add(deck.theDeck[randomnum]);
                     Console.WriteLine(deck.theDeck[randomnum]);
                     deck.theDeck.RemoveAt(randomnum);
@@ -94,6 +97,19 @@ namespace CardGame
         {
             deck.createDeck();
             dealInitialCards();
+        }
+
+        public static bool CheckVictories()
+        {
+            for (int i = 0; i < amountOfPlayers; i++)
+            {
+                if (players[i].playerHand[0].suit == players[i].playerHand[1].suit & players[i].playerHand[0].suit == players[i].playerHand[2].suit && players[i].playerHand[0].suit == players[i].playerHand[3].suit)
+                {
+                    Console.WriteLine("true");
+                    return true;
+                }
+            }
+            return false;
         }
 
     }
