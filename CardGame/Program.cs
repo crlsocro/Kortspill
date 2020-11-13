@@ -7,7 +7,7 @@ namespace CardGame
     class Program
     {
 
-        public string[] playerNames = { "Hagen", "Chris", "Håkon", "Ola", "Magnus Carlsen", "John Cena", "AleksiB" };
+        public string[] playerNames = { "Hagen", "Chris", "Hakon", "Ola"};
         public static int amountOfPlayers;
         public static List<Player> players = new List<Player>();
         
@@ -58,9 +58,9 @@ namespace CardGame
                 for (int j = 0; j < amountOfPlayers; j++)
                 {
                     Random rnd = new Random();
-                    int randomnum = rnd.Next(0, deck.theDeck.Count +1);
+                    int randomnum = rnd.Next(0, deck.theDeck.Count);
                     players[j].playerHand.Add(deck.theDeck[randomnum]);
-                    Console.WriteLine(deck.theDeck[randomnum]);
+                    Console.WriteLine(players[j].name + ": Got " + deck.theDeck[randomnum].ToString(deck.theDeck[randomnum]));
                     deck.theDeck.RemoveAt(randomnum);
                 }
             }
@@ -75,20 +75,24 @@ namespace CardGame
             
             //REPLACE WITH FOR LOOP, THIS IS A VERY KRISE LØSNING
             Player player1 = new Player();
+            player1.name = "Player1";
             players.Add(player1);
             if (amountOfPlayers >= 2)
             {
                 Player player2 = new Player();
+                player2.name = "Player2";
                 players.Add(player2);
             }
             if (amountOfPlayers >= 3)
             {
                 Player player3 = new Player();
+                player3.name = "Player3";
                 players.Add(player3);
             }
             if (amountOfPlayers >= 4)
             {
                 Player player4 = new Player();
+                player4.name = "Player4";
                 players.Add(player4);
             }
         }
@@ -105,11 +109,37 @@ namespace CardGame
             {
                 if (players[i].playerHand[0].suit == players[i].playerHand[1].suit & players[i].playerHand[0].suit == players[i].playerHand[2].suit && players[i].playerHand[0].suit == players[i].playerHand[3].suit)
                 {
-                    Console.WriteLine("true");
+                    Console.WriteLine("someone won");
                     return true;
                 }
             }
+            Console.WriteLine("nobody won");
             return false;
+        }
+
+        void TossCard(Player player)
+        {
+            List<int> amountOfSuitsInPlayerHand = new List<int>
+            {
+                0,
+                0,
+                0,
+                0
+            };
+            //For loop to cycle thru
+            for (int j = 0; j < player.playerHand.Count; j++)
+            {
+                if (player.playerHand[j].suit == (Card.Suit)0){  amountOfSuitsInPlayerHand[0]++; }
+                if (player.playerHand[j].suit == (Card.Suit)1) { amountOfSuitsInPlayerHand[1]++; }
+                if (player.playerHand[j].suit == (Card.Suit)2) { amountOfSuitsInPlayerHand[2]++; }
+                if (player.playerHand[j].suit == (Card.Suit)3) { amountOfSuitsInPlayerHand[3]++; }
+            }
+
+            amountOfSuitsInPlayerHand.Sort();
+            if (player.playerHand[0].suit != (Card.Suit)amountOfSuitsInPlayerHand[player.playerHand.Count -1])
+            {
+                //player.playerHand[0].RemoveAt(0);
+            }
         }
 
     }

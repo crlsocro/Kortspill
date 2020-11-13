@@ -50,4 +50,9 @@ public class Card
     {
         return card.suit;
     }
+
+    public string ToString(Card card)
+    {
+        return card.rank + " of " + card.suit;
+    }
 }

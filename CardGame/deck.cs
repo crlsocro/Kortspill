@@ -32,24 +32,24 @@ public class Deck
 
 		//Rerunning the function if two are the same is a terrible solution
 		Random rnd = new Random();
-		int rndVulture = rnd.Next(0, 53);
+		int rndVulture = rnd.Next(0, 52);
 		theDeck[rndVulture].specialty = (Specialty)1;
 
-		int rndBomb = rnd.Next(0, 53);
+		int rndBomb = rnd.Next(0, 52);
         if (rndBomb != rndVulture)
         {
 			theDeck[rndBomb].specialty = (Specialty)2;
 		}
 		else { selectSpecialtyCards(); }
 
-		int rndQuarantine = rnd.Next(0, 53);
+		int rndQuarantine = rnd.Next(0, 52);
 		if (rndQuarantine != rndVulture || rndQuarantine != rndBomb)
 		{
 			theDeck[rndQuarantine].specialty = (Specialty)3;
         }
         else{selectSpecialtyCards();}
 
-		int rndJoker = rnd.Next(0, 53);
+		int rndJoker = rnd.Next(0, 52);
 		if (rndJoker != rndVulture || rndJoker != rndBomb || rndJoker != rndQuarantine)
 		{
 			theDeck[rndJoker].specialty = (Specialty)4;
