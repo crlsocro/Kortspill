@@ -98,20 +98,18 @@ namespace CardGame
         public static void GameLoop()
         {
 
-            int i = amountOfPlayers * 4;
-
             while (!CheckVictories())
             {
                 Random random = new Random();
-                int rnd = random.Next(0, amountOfPlayers - 1);
-                TossCard(players[rnd]);
-                players[rnd].playerHand.Add(deck.theDeck[rnd]);
-                Console.WriteLine(players[rnd].name + ": Got " + deck.theDeck[i].ToString(deck.theDeck[i]));
-                i++;
+                int randomPlayer = random.Next(0, amountOfPlayers - 1);
+                int randomCard = random.Next(0, deck.theDeck.Count - 1);
+                players[randomPlayer].playerHand.Add(deck.theDeck[randomCard]);
+                deck.theDeck.RemoveAt(randomCard);
+                TossCard(players[randomPlayer]);
+                Console.WriteLine(players[randomPlayer].name + ": Got " + deck.theDeck[randomCard].ToString(deck.theDeck[randomCard]));
+                Console.WriteLine(deck.theDeck.Count);
             }
             CheckVictories();
-
-            Console.WriteLine(deck.theDeck.Count);
         }
 
         public static void TossCard(Player player)
@@ -133,10 +131,18 @@ namespace CardGame
             }
 
             amountOfSuitsInPlayerHand.Sort();
-            if (player.playerHand[0].suit != (Card.Suit)amountOfSuitsInPlayerHand[player.playerHand.Count - 1])
+            if (player.playerHand[0].suit != (Card.Suit)amountOfSuitsInPlayerHand[player.playerHand.Count - 2])
+            {
+                player.playerHand.RemoveAt(0);
+            } else
             {
                 player.playerHand.RemoveAt(0);
             }
+           
+
+            
+
+
         }
     }
 }
