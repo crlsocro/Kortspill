@@ -108,16 +108,16 @@ namespace CardGame
             //For loop to cycle thru
             for (int j = 0; j < player.playerHand.Count; j++)
             {
-                if (player.playerHand[j].suit == (Card.Suit)0){  amountOfSuitsInPlayerHand[0]++; }
+                if (player.playerHand[j].suit == (Card.Suit)0) { amountOfSuitsInPlayerHand[0]++; }
                 if (player.playerHand[j].suit == (Card.Suit)1) { amountOfSuitsInPlayerHand[1]++; }
                 if (player.playerHand[j].suit == (Card.Suit)2) { amountOfSuitsInPlayerHand[2]++; }
                 if (player.playerHand[j].suit == (Card.Suit)3) { amountOfSuitsInPlayerHand[3]++; }
             }
 
             amountOfSuitsInPlayerHand.Sort();
-            if (player.playerHand[0].suit != (Card.Suit)amountOfSuitsInPlayerHand[player.playerHand.Count -1])
+            if (player.playerHand[0].suit != (Card.Suit)amountOfSuitsInPlayerHand[player.playerHand.Count - 1])
             {
-                //player.playerHand[0].RemoveAt(0);
+                player.playerHand.RemoveAt(0);
             }
         }
 
