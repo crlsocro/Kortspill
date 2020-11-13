@@ -46,11 +46,6 @@ public class Card
         Joker
     }
 
-    public Enum GetSuitAndRank(Card card)
-    {
-        return card.suit;
-    }
-
     public string ToString(Card card)
     {
         return card.rank + " of " + card.suit;

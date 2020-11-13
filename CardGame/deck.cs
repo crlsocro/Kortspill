@@ -7,7 +7,6 @@ public class Deck
 {
 
 	public List<Card> theDeck = new List<Card>();
-	//public List<Card> theDeck = new List<Card>();,
 
 	public List<Card> createDeck()
 	{

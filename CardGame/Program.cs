@@ -7,7 +7,6 @@ namespace CardGame
     class Program
     {
 
-        public string[] playerNames = { "Hagen", "Chris", "Hakon", "Ola"};
         public static int amountOfPlayers;
         public static List<Player> players = new List<Player>();
         
@@ -25,27 +24,7 @@ namespace CardGame
             AssignPlayers();
             GameStart();
             CheckVictories();
-            //Console.WriteLine();
-
-            /* Prints the entire deck
-            for (int i = 0; i < deck.theDeck.Count; i++)
-            {
-                if (deck.theDeck[i].specialty == (Specialty)0)
-                {
-                    Console.WriteLine(deck.theDeck[i].suit + " " + deck.theDeck[i].rank);
-                }
-                else
-                {
-                    Console.WriteLine(deck.theDeck[i].suit + " " + deck.theDeck[i].rank + " " + deck.theDeck[i].specialty);
-                }
-            }*/
             Console.WriteLine(deck.theDeck.Count);
-            /* Prints the entire player hand
-            Console.WriteLine(players[0].ToString(players[0].playerHand[0]));
-            Console.WriteLine(players[0].ToString(players[0].playerHand[1]));
-            Console.WriteLine(players[0].ToString(players[0].playerHand[2]));
-            Console.WriteLine(players[0].ToString(players[0].playerHand[3]));
-            */
 
         }
 
