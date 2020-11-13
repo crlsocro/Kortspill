@@ -29,23 +29,6 @@ namespace CardGame
 
         }
 
-        public static void GameLoop()
-        {
-
-            int i = 20;
-
-            while(!CheckVictories())
-            {
-                Random random = new Random();
-                int pickPlayer = random.Next(0, 1);
-                TossCard(players[pickPlayer]);
-                players[pickPlayer].playerHand.Add(deck.theDeck[i]);
-                Console.WriteLine(players[pickPlayer].name + ": Got " + deck.theDeck[i].ToString(deck.theDeck[i]));
-                i++;
-            }
-            CheckVictories();
-        }
-
         public static void dealInitialCards()
         {
             for (int i = 0; i < amountOfCardsForEachPlayer; i++)
@@ -110,6 +93,25 @@ namespace CardGame
             }
             Console.WriteLine("nobody won");
             return false;
+        }
+
+        public static void GameLoop()
+        {
+
+            int i = amountOfPlayers * 4;
+
+            while (!CheckVictories())
+            {
+                Random random = new Random();
+                int rnd = random.Next(0, amountOfPlayers - 1);
+                TossCard(players[rnd]);
+                players[rnd].playerHand.Add(deck.theDeck[rnd]);
+                Console.WriteLine(players[rnd].name + ": Got " + deck.theDeck[i].ToString(deck.theDeck[i]));
+                i++;
+            }
+            CheckVictories();
+
+            Console.WriteLine(deck.theDeck.Count);
         }
 
         public static void TossCard(Player player)
