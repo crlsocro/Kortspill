@@ -25,10 +25,26 @@ namespace CardGame
             GameStart();
             CheckVictories();
             Console.WriteLine(deck.theDeck.Count);
+            GameLoop();
 
         }
 
+        public static void GameLoop()
+        {
 
+            int i = 20;
+
+            while(!CheckVictories())
+            {
+                Random random = new Random();
+                int pickPlayer = random.Next(0, 1);
+                TossCard(players[pickPlayer]);
+                players[pickPlayer].playerHand.Add(deck.theDeck[i]);
+                Console.WriteLine(players[pickPlayer].name + ": Got " + deck.theDeck[i].ToString(deck.theDeck[i]));
+                i++;
+            }
+            CheckVictories();
+        }
 
         public static void dealInitialCards()
         {
@@ -96,7 +112,7 @@ namespace CardGame
             return false;
         }
 
-        void TossCard(Player player)
+        public static void TossCard(Player player)
         {
             List<int> amountOfSuitsInPlayerHand = new List<int>
             {
@@ -120,7 +136,5 @@ namespace CardGame
                 player.playerHand.RemoveAt(0);
             }
         }
-
     }
 }
-

@@ -12,8 +12,6 @@ public class Player
         if (specials != ""){return true;}else{return false;}
     }
 
-    
-
 }
     
 
