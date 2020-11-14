@@ -87,11 +87,15 @@ namespace CardGame
             {
                 if (players[i].playerHand[0].suit == players[i].playerHand[1].suit & players[i].playerHand[0].suit == players[i].playerHand[2].suit && players[i].playerHand[0].suit == players[i].playerHand[3].suit)
                 {
-                    Console.WriteLine("someone won");
+                    Console.WriteLine(players[i].name + "won!!");
+                    Console.WriteLine(players[i].playerHand[0].ToString(players[i].playerHand[0]));
+                    Console.WriteLine(players[i].playerHand[1].ToString(players[i].playerHand[1]));
+                    Console.WriteLine(players[i].playerHand[2].ToString(players[i].playerHand[2]));
+                    Console.WriteLine(players[i].playerHand[3].ToString(players[i].playerHand[3]));
                     return true;
                 }
             }
-            Console.WriteLine("nobody won");
+            //Console.WriteLine("nobody won");
             return false;
         }
 
@@ -106,21 +110,17 @@ namespace CardGame
                 players[randomPlayer].playerHand.Add(deck.theDeck[randomCard]);
                 deck.theDeck.RemoveAt(randomCard);
                 TossCard(players[randomPlayer]);
-                Console.WriteLine(players[randomPlayer].name + ": Got " + deck.theDeck[randomCard].ToString(deck.theDeck[randomCard]));
-                Console.WriteLine(deck.theDeck.Count);
+                if (deck.theDeck.Count > 0)
+                {
+                    Console.WriteLine(players[randomPlayer].name + ": Got " + deck.theDeck[randomCard].ToString(deck.theDeck[randomCard]));
+                }
             }
         }
 
         public static void TossCard(Player player)
         {
-            List<int> amountOfSuitsInPlayerHand = new List<int>
-            {
-                0,
-                0,
-                0,
-                0
-            };
-            //For loop to cycle thru
+            List<int> amountOfSuitsInPlayerHand = new List<int>{0,0,0,0};
+            //For loop to cycle thru player cards
             for (int j = 0; j < player.playerHand.Count; j++)
             {
                 if (player.playerHand[j].suit == (Card.Suit)0) { amountOfSuitsInPlayerHand[0]++; }
@@ -132,6 +132,7 @@ namespace CardGame
             amountOfSuitsInPlayerHand.Sort();
             if (player.playerHand[0].suit != (Card.Suit)amountOfSuitsInPlayerHand[player.playerHand.Count - 2])
             {
+                deck.theDeck.Add(player.playerHand[0]);
                 player.playerHand.RemoveAt(0);
             } else
             {
