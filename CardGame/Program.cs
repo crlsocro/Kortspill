@@ -110,6 +110,8 @@ namespace CardGame
                 players[randomPlayer].playerHand.Add(deck.theDeck[randomCard]);
                 deck.theDeck.RemoveAt(randomCard);
                 TossCard(players[randomPlayer]);
+                Console.WriteLine(deck.theDeck.Count);
+                CheckVictories();
                 if (deck.theDeck.Count > 0)
                 {
                     Console.WriteLine(players[randomPlayer].name + ": Got " + deck.theDeck[randomCard].ToString(deck.theDeck[randomCard]));
