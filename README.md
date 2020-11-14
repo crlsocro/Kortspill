@@ -6,6 +6,7 @@
 Fra oppgaveteksten:
 
 Noen hovedtemaer dere bør ta stilling til: (bare fint om dere kommer på flere):
+
 A. Diskuter muligheter innad i gruppen. Skriv i tekstdokumentasjonen fremgangsmåte
 (rekkefølge på punkter, hva dere prioriterte) og begrunn valgene deres. Dette skal bli en
 beskrivelse av prosessen og er en del av vurderingsgrunnlaget i innleveringen.
