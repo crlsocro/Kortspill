@@ -106,7 +106,7 @@ namespace CardGame
             {
                 Random random = new Random();
                 int randomPlayer = random.Next(0, amountOfPlayers);
-                int randomCard = random.Next(0, deck.theDeck.Count);
+                int randomCard = random.Next(0, deck.theDeck.Count -1);
                 players[randomPlayer].playerHand.Add(deck.theDeck[randomCard]);
                 deck.theDeck.RemoveAt(randomCard);
                 TossCard(players[randomPlayer]);
