@@ -10,7 +10,8 @@ namespace CardGame
 
         public static int amountOfPlayers;
         public static List<Player> players = new List<Player>();
-        public Random rnd = new Random();
+        public static Random rnd = new Random();
+        //public bool quarantine
 
         private static Deck deck = new Deck();
         private static Player player2 = new Player();
@@ -42,11 +43,12 @@ namespace CardGame
             {
                 for (int j = 0; j < amountOfPlayers; j++)
                 {
-                    Random rnd = new Random();
-                    int randomnum = rnd.Next(0, deck.theDeck.Count);
-                    players[j].playerHand.Add(deck.theDeck[randomnum]);
-                    Console.WriteLine(players[j].name + " got: " + deck.theDeck[randomnum].ToString());
-                    deck.theDeck.RemoveAt(randomnum);
+                    //Random rnd = new Random();
+                    Card randomCard = SelectARandomCard();
+                    players[j].playerHand.Add(randomCard);
+                    Console.WriteLine(players[j].name + " got: " + randomCard.ToString());
+                    deck.theDeck.Remove(randomCard);
+                    //Thread.Sleep(100);
                 }
             }
         }
@@ -114,20 +116,19 @@ namespace CardGame
 
             while (!CheckVictories())
             {
-                Random random = new Random();
-                int randomPlayer = random.Next(0, amountOfPlayers);
-                int randomCard = random.Next(0, deck.theDeck.Count -1);
-                players[randomPlayer].playerHand.Add(deck.theDeck[randomCard]);
-                if (deck.theDeck[randomCard].specialty != (Specialty)0)
+                Player randomPlayer = SelectRandomPlayer();
+                Card randomCard = SelectARandomCard();
+                randomPlayer.playerHand.Add(randomCard);
+                if (randomCard.specialty != 0)
                 {
-                    PlayerHasSpecial(deck.theDeck[randomCard], players[randomPlayer]);
+                    PlayerHasSpecial(randomCard, randomPlayer);
                 }
                 if (deck.theDeck.Count > 0)
                 {
-                    Console.WriteLine(players[randomPlayer].name + " got: " + deck.theDeck[randomCard].ToString());
+                    Console.WriteLine(randomPlayer.name + " got: " + randomCard.ToString());
                 }
-                TossCard(players[randomPlayer]);
-                deck.theDeck.RemoveAt(randomCard);
+                TossCard(randomPlayer);
+                deck.theDeck.Remove(randomCard);
                 //............SLOW MODE............Simulates irl time
                 //Thread.Sleep(500);
 
@@ -149,8 +150,7 @@ namespace CardGame
             }
 
             amountOfSuitsInPlayerHand.Sort();
-            //ERROR HERE
-            if (player.playerHand[0].suit != (Card.Suit)amountOfSuitsInPlayerHand[3])
+            if (player.playerHand[0].suit != (Suit)amountOfSuitsInPlayerHand[3])
             {
                 deck.theDeck.Add(player.playerHand[0]);
                 Console.WriteLine(player.name + " tossed card: " + player.playerHand[0].ToString());
@@ -186,20 +186,18 @@ namespace CardGame
             Console.WriteLine(player.name + " got a Bomb card and must hand in all his cards!");
             for (int i = 0; i < player.playerHand.Count; i++)
             {
+                Card randomCard = SelectARandomCard();
                 player.playerHand.RemoveAt(i);
-                Random random = new Random();
-                int randomCard = random.Next(0, deck.theDeck.Count - 1);
-                player.playerHand.Add(deck.theDeck[randomCard]);
-                Console.WriteLine(player.name + " got: " + deck.theDeck[randomCard].ToString());
+                player.playerHand.Add(randomCard);
+                Console.WriteLine(player.name + " got: " + randomCard.ToString());
             }
         }
 
         public static void Vulture(Player player)
         {
             Console.WriteLine(player.name + " got a Vulture card and gets an extra card!");
-            Random random = new Random();
-            int randomCard = random.Next(0, deck.theDeck.Count - 1);
-            player.playerHand.Add(deck.theDeck[randomCard]);
+            Card randomCard = SelectARandomCard();
+            player.playerHand.Add(randomCard);
         }
 
         public static void Joker(Player player)
@@ -208,15 +206,27 @@ namespace CardGame
             player.HasJoker = true;
         }
 
-        public Player SelectRandomPlayer()
+        public static Player SelectRandomPlayer()
         {
             int randomPlayer = rnd.Next(0, amountOfPlayers);
             if (players[randomPlayer].SkipThisPlayer)
             {
+                players[randomPlayer].SkipThisPlayer = false;
                 return SelectRandomPlayer();
-            } else { return players[randomPlayer]; }
+            }
+            else 
+            {
+                return players[randomPlayer];
+            }
+        }
+
+        public static Card SelectARandomCard()
+        {
+            int randomCard = rnd.Next(0, deck.theDeck.Count - 1);
+            return deck.theDeck[randomCard];
         }
 
         //TODO a function to reset all players joker and quarantine bools
+        //TODO
     }
 }

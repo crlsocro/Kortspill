@@ -50,9 +50,4 @@ public class Card
     {
         return rank + " of " + suit;
     }
-
-    public void DealARandomCard()
-    {
-
-    }
 }
