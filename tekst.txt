@@ -1,0 +1,22 @@
+PG3302 Software Design Eksamen
+
+Da vi fikk oppgaven så fikk vi raskt satt opp hvordan vi skulle fullføre oppgaven som ble gitt. Det første vi gjorde var å se på uml til løsningen slik at det skulle bli lettere å kode siden vi hadde en struktur å se på. Vi valgte å disponere tiden vår på oppgaven slikt at en skrev grunnkoden for å få et overblikk over hvordan koden oppførte seg og deretter var alle med å legge til nødvendig kode for å få programmet til å oppføre seg slik løsningen krever. Tross situasjonen vi befinner oss i henhold til pandemien har vi klart å holde en god kommunikasjon på Snapchat, Discord og Messenger. Vi har brukt GitHub for å dele kode mellom oss og det har fungert veldig bra. Når vi først hadde begynt på koden så kom vi over noen feil og mangler, men dette ble løst fort ved at alle på gruppen hjalp hverandre med å løse feil.
+
+Når vi først begynte kodingen så begynte som sagt tidligere en på gruppen å legge til nødvendig kode for å ha et program å kode etter. Uten noe input og en kode som ikke ga så mye mening. Deretter begynte den seriøse programmeringen hvor vi først la til egne klasser som har en direkte lenke til Program.cs. Vi møtte noen problemer på veien ved små kodefeil, men dette ble raskt løst. Siden vårt første utkast i UML til løsningen ikke var helt optimal måtte vi legge til flere faktorer for å få en UML som passet best til vårt program.
+
+Trenger mer tekst her…
+ 
+Følgende ting fra pensum har vi tatt med i leveringen:
+-	UML
+-	Single-responsibility principle (SRP)
+-	Decorator pattern
+-	Dependency inversion principle (DIP)
+-	Multithreading
+-	Testing
+
+ 
+Noen spesielle utfordringer vi hadde var at vi ikke hadde tilgang til å møtes som en gruppe på grunn av restriksjoner satt av kommunen, men vi gjorde vårt beste med bruk av sosiale medier. I koden så hadde vi noen spesielle utfordringer ved at det å definere hvor mange spillere man kunne ha, og genering av spillere som trekker og kaster kort uten at programmet krasjer, men dette klarte vi å fikse til slutt. En stor utfordring vi hadde var at vi ikke kunne bruke dynamisk variabel navn i koden og fant egentlig ikke en relevant løsning til koden for å ha muligheten til å bruke dynamiske variabelnavn. En metode vi har kalt GameLoop() er vi spesielt fornøyd med fordi den har lite kode og fungerer optimalt til vår løsning. Så vi føler den er godt programmert siden den krever lite kode på grunn av hvordan vi har kodet den. Noen andre ting vi er fornøyde med er hvordan vi klarte å bruke threading i koden vår og hvordan vi klarte å vise at vi behersker dette og vise hvordan vi viste at tester kan kjøres i vårt program. 
+Noen fancy features vi har med er …
+Kjente bugs i programmet er følgende
+
+Vi har ikke brukt noe materiell fra nettet, men det vi har brukt er forelesningene for å få en forståelse for hvordan vi skal løse eksamensoppgaven. Det har vært ren inspirasjon siden koden vår er 100% egenprodusert.
