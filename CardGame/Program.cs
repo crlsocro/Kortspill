@@ -108,15 +108,16 @@ namespace CardGame
                 int randomPlayer = random.Next(0, amountOfPlayers);
                 int randomCard = random.Next(0, deck.theDeck.Count -1);
                 players[randomPlayer].playerHand.Add(deck.theDeck[randomCard]);
-                deck.theDeck.RemoveAt(randomCard);
-                TossCard(players[randomPlayer]);
-                Console.WriteLine(deck.theDeck.Count);
-                CheckVictories();
                 if (deck.theDeck.Count > 0)
                 {
                     Console.WriteLine(players[randomPlayer].name + ": Got " + deck.theDeck[randomCard].ToString(deck.theDeck[randomCard]));
                 }
+                TossCard(players[randomPlayer]);
+                deck.theDeck.RemoveAt(randomCard);
+                
             }
+
+            Console.WriteLine(deck.theDeck.Count);
         }
 
         public static void TossCard(Player player)
