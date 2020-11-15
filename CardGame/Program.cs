@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using static Card;
 
 namespace CardGame
@@ -19,13 +20,19 @@ namespace CardGame
 
         static void Main(string[] args)
         {
-
-
             AssignPlayers();
             GameStart();
             CheckVictories();
             Console.WriteLine(deck.theDeck.Count);
             GameLoop();
+            /*
+             * BUG: PLAYERHAND HAS 6 CARDS
+             * BUG: PLAYERHAND HAS 6 CARDS
+             * BUG: PLAYERHAND HAS 6 CARDS
+             * BUG: PLAYERHAND HAS 6 CARDS
+             * BUG: PLAYERHAND HAS 6 CARDS
+             * Getting these cards are not written to console??????
+            */
 
         }
 
@@ -108,13 +115,19 @@ namespace CardGame
                 int randomPlayer = random.Next(0, amountOfPlayers);
                 int randomCard = random.Next(0, deck.theDeck.Count -1);
                 players[randomPlayer].playerHand.Add(deck.theDeck[randomCard]);
+                if (deck.theDeck[randomCard].specialty != (Card.Specialty)0)
+                {
+                    PlayerHasSpecial(deck.theDeck[randomCard], players[randomPlayer]);
+                }
                 if (deck.theDeck.Count > 0)
                 {
                     Console.WriteLine(players[randomPlayer].name + ": Got " + deck.theDeck[randomCard].ToString(deck.theDeck[randomCard]));
                 }
                 TossCard(players[randomPlayer]);
                 deck.theDeck.RemoveAt(randomCard);
-                
+                //............SLOW MODE............Simulates irl time
+                Thread.Sleep(500);
+
             }
 
             Console.WriteLine(deck.theDeck.Count);
@@ -133,19 +146,57 @@ namespace CardGame
             }
 
             amountOfSuitsInPlayerHand.Sort();
-            if (player.playerHand[0].suit != (Card.Suit)amountOfSuitsInPlayerHand[player.playerHand.Count - 2])
+            //ERROR HERE
+            if (player.playerHand[0].suit != (Card.Suit)amountOfSuitsInPlayerHand[3])
             {
                 deck.theDeck.Add(player.playerHand[0]);
                 player.playerHand.RemoveAt(0);
             } else
             {
-                player.playerHand.RemoveAt(0);
+                deck.theDeck.Add(player.playerHand[1]);
+                player.playerHand.RemoveAt(1);
             }
-           
-
-            
-
-
         }
+
+        public static void PlayerHasSpecial(Card card, Player player)
+        {
+            for (int i = 1; i < 3; i++)
+            {
+                if (card.specialty == (Card.Specialty)i) { Vulture(player); }
+                if (card.specialty == (Card.Specialty)i) { Bomb(player); }
+                if (card.specialty == (Card.Specialty)i) { Quarantine(player); }
+                if (card.specialty == (Card.Specialty)i) { Joker(player); }
+            }
+        }
+
+        public static void Quarantine(Player player)
+        {
+            player.SkipThisPlayer = true;
+        }
+
+        public static void Bomb(Player player)
+        {
+            for (int i = 0; i < player.playerHand.Count; i++)
+            {
+                player.playerHand.RemoveAt(i);
+                Random random = new Random();
+                int randomCard = random.Next(0, deck.theDeck.Count - 1);
+                player.playerHand.Add(deck.theDeck[randomCard]);
+            }
+        }
+
+        public static void Vulture(Player player)
+        {
+            Random random = new Random();
+            int randomCard = random.Next(0, deck.theDeck.Count - 1);
+            player.playerHand.Add(deck.theDeck[randomCard]);
+        }
+
+        public static void Joker(Player player)
+        {
+            player.HasJoker = true;
+        }
+
+        //TODO a function to reset all players joker and quarantine bools
     }
 }
