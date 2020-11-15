@@ -10,7 +10,8 @@ namespace CardGame
 
         public static int amountOfPlayers;
         public static List<Player> players = new List<Player>();
-        
+        public Random rnd = new Random();
+
         private static Deck deck = new Deck();
         private static Player player2 = new Player();
         private static Player player3 = new Player();
@@ -44,7 +45,7 @@ namespace CardGame
                     Random rnd = new Random();
                     int randomnum = rnd.Next(0, deck.theDeck.Count);
                     players[j].playerHand.Add(deck.theDeck[randomnum]);
-                    Console.WriteLine(players[j].name + " got: " + deck.theDeck[randomnum].ToString(/*deck.theDeck[randomnum]*/));
+                    Console.WriteLine(players[j].name + " got: " + deck.theDeck[randomnum].ToString());
                     deck.theDeck.RemoveAt(randomnum);
                 }
             }
@@ -58,24 +59,23 @@ namespace CardGame
 
             if (amountOfPlayers >= 2)
             {
-                Player player1 = new Player();
+                Player player1 = new Player { name = "Player1" };
                 player1.name = "Player1";
                 players.Add(player1);
 
-                Player player2 = new Player();
+                Player player2 = new Player { name = "Player2" };
                 player2.name = "Player2";
                 players.Add(player2);
             }
             if (amountOfPlayers >= 3)
             {
-                Player player3 = new Player();
-                player3.name = "Player3";
+                Player player3 = new Player{ name = "Player3" };
+
                 players.Add(player3);
             }
             if (amountOfPlayers >= 2 && amountOfPlayers < 5)
             {
-                Player player4 = new Player();
-                player4.name = "Player4";
+                Player player4 = new Player{ name = "Player4" };
                 players.Add(player4);
             }
             else
@@ -98,10 +98,10 @@ namespace CardGame
                 if (players[i].playerHand[0].suit == players[i].playerHand[1].suit & players[i].playerHand[0].suit == players[i].playerHand[2].suit && players[i].playerHand[0].suit == players[i].playerHand[3].suit)
                 {
                     Console.WriteLine(players[i].name + " won!!");
-                    Console.WriteLine(players[i].playerHand[0].ToString(/*players[i].playerHand[0]*/));
-                    Console.WriteLine(players[i].playerHand[1].ToString(/*players[i].playerHand[1]*/));
-                    Console.WriteLine(players[i].playerHand[2].ToString(/*players[i].playerHand[2]*/));
-                    Console.WriteLine(players[i].playerHand[3].ToString(/*players[i].playerHand[3]*/));
+                    Console.WriteLine(players[i].playerHand[0].ToString());
+                    Console.WriteLine(players[i].playerHand[1].ToString());
+                    Console.WriteLine(players[i].playerHand[2].ToString());
+                    Console.WriteLine(players[i].playerHand[3].ToString());
                     return true;
                 }
             }
@@ -118,13 +118,13 @@ namespace CardGame
                 int randomPlayer = random.Next(0, amountOfPlayers);
                 int randomCard = random.Next(0, deck.theDeck.Count -1);
                 players[randomPlayer].playerHand.Add(deck.theDeck[randomCard]);
-                if (deck.theDeck[randomCard].specialty != (Card.Specialty)0)
+                if (deck.theDeck[randomCard].specialty != (Specialty)0)
                 {
                     PlayerHasSpecial(deck.theDeck[randomCard], players[randomPlayer]);
                 }
                 if (deck.theDeck.Count > 0)
                 {
-                    Console.WriteLine(players[randomPlayer].name + " got: " + deck.theDeck[randomCard].ToString(/*deck.theDeck[randomCard]*/));
+                    Console.WriteLine(players[randomPlayer].name + " got: " + deck.theDeck[randomCard].ToString());
                 }
                 TossCard(players[randomPlayer]);
                 deck.theDeck.RemoveAt(randomCard);
@@ -206,6 +206,15 @@ namespace CardGame
         {
             Console.WriteLine(player.name + " got a Joker card and only needs three equal suits to win!");
             player.HasJoker = true;
+        }
+
+        public Player SelectRandomPlayer()
+        {
+            int randomPlayer = rnd.Next(0, amountOfPlayers);
+            if (players[randomPlayer].SkipThisPlayer)
+            {
+                return SelectRandomPlayer();
+            } else { return players[randomPlayer]; }
         }
 
         //TODO a function to reset all players joker and quarantine bools
