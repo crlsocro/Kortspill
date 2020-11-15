@@ -190,6 +190,7 @@ namespace CardGame
                 Random random = new Random();
                 int randomCard = random.Next(0, deck.theDeck.Count - 1);
                 player.playerHand.Add(deck.theDeck[randomCard]);
+                Console.WriteLine(player.name + " got: " + deck.theDeck[randomCard].ToString());
             }
         }
 
