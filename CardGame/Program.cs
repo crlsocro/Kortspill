@@ -139,10 +139,10 @@ namespace CardGame
             //For loop to cycle thru player cards
             for (int j = 0; j < player.playerHand.Count; j++)
             {
-                if (player.playerHand[j].suit == (Card.Suit)0) { amountOfSuitsInPlayerHand[0]++; }
-                if (player.playerHand[j].suit == (Card.Suit)1) { amountOfSuitsInPlayerHand[1]++; }
-                if (player.playerHand[j].suit == (Card.Suit)2) { amountOfSuitsInPlayerHand[2]++; }
-                if (player.playerHand[j].suit == (Card.Suit)3) { amountOfSuitsInPlayerHand[3]++; }
+                if (player.playerHand[j].suit == (Suit)0) { amountOfSuitsInPlayerHand[0]++; }
+                if (player.playerHand[j].suit == (Suit)1) { amountOfSuitsInPlayerHand[1]++; }
+                if (player.playerHand[j].suit == (Suit)2) { amountOfSuitsInPlayerHand[2]++; }
+                if (player.playerHand[j].suit == (Suit)3) { amountOfSuitsInPlayerHand[3]++; }
             }
 
             amountOfSuitsInPlayerHand.Sort();
@@ -150,10 +150,11 @@ namespace CardGame
             if (player.playerHand[0].suit != (Card.Suit)amountOfSuitsInPlayerHand[3])
             {
                 deck.theDeck.Add(player.playerHand[0]);
-                Console.WriteLine(player + " tossed card: " + player.playerHand[0].ToString()); ;
+                Console.WriteLine(player.name + " tossed card: " + player.playerHand[0].ToString()); ;
                 player.playerHand.RemoveAt(0);
             } else
             {
+                Console.WriteLine(player.name + " tossed card: " + player.playerHand[0].ToString()); ;
                 deck.theDeck.Add(player.playerHand[1]);
                 player.playerHand.RemoveAt(1);
             }
@@ -163,10 +164,10 @@ namespace CardGame
         {
             for (int i = 1; i < 3; i++)
             {
-                if (card.specialty == (Card.Specialty)i) { Vulture(player); }
-                if (card.specialty == (Card.Specialty)i) { Bomb(player); }
-                if (card.specialty == (Card.Specialty)i) { Quarantine(player); }
-                if (card.specialty == (Card.Specialty)i) { Joker(player); }
+                if (card.specialty == (Specialty)i) { Vulture(player); }
+                if (card.specialty == (Specialty)i) { Bomb(player); }
+                if (card.specialty == (Specialty)i) { Quarantine(player); }
+                if (card.specialty == (Specialty)i) { Joker(player); }
             }
         }
 
