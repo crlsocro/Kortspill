@@ -12,7 +12,6 @@ namespace CardGame
         public static List<Player> players = new List<Player>();
         
         private static Deck deck = new Deck();
-        //private static Player player1 = new Player();
         private static Player player2 = new Player();
         private static Player player3 = new Player();
         private static Player player4 = new Player();
@@ -56,9 +55,6 @@ namespace CardGame
         {
             Console.WriteLine("How many total players do you want? (2-4)");
             amountOfPlayers = Convert.ToInt32(Console.ReadLine());
-            //string[] playerAssignments = { "player1", "player2", "player3", "player4" };
-            
-            //REPLACE WITH FOR LOOP, THIS IS A VERY KRISE LØSNING
 
             if (amountOfPlayers >= 2)
             {
@@ -169,13 +165,14 @@ namespace CardGame
 
         public static void PlayerHasSpecial(Card card, Player player)
         {
-            for (int i = 1; i < 3; i++)
-            {
-                if (card.specialty == (Specialty)i) { Vulture(player); }
-                if (card.specialty == (Specialty)i) { Bomb(player); }
-                if (card.specialty == (Specialty)i) { Quarantine(player); }
-                if (card.specialty == (Specialty)i) { Joker(player); }
-            }
+            Random rnd = new Random();
+            int randomSpecial = rnd.Next(0, 3);
+            
+                if (card.specialty == (Specialty)0) { Vulture(player); }
+                if (card.specialty == (Specialty)1) { Bomb(player); }
+                if (card.specialty == (Specialty)2) { Quarantine(player); }
+                if (card.specialty == (Specialty)3) { Joker(player); }
+           
         }
 
         public static void Quarantine(Player player)
