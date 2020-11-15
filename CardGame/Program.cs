@@ -172,13 +172,13 @@ namespace CardGame
 
         public static void Quarantine(Player player)
         {
-            Console.WriteLine(player + " got a Quarantine card and will be skipped next turn!");
+            Console.WriteLine(player.name + " got a Quarantine card and will be skipped next turn!");
             player.SkipThisPlayer = true;
         }
 
         public static void Bomb(Player player)
         {
-            Console.WriteLine(player + " got a Bomb card and must hand in all his cards!");
+            Console.WriteLine(player.name + " got a Bomb card and must hand in all his cards!");
             for (int i = 0; i < player.playerHand.Count; i++)
             {
                 player.playerHand.RemoveAt(i);
@@ -190,7 +190,7 @@ namespace CardGame
 
         public static void Vulture(Player player)
         {
-            Console.WriteLine(player + " got a Vulture card and gets an extra card!");
+            Console.WriteLine(player.name + " got a Vulture card and gets an extra card!");
             Random random = new Random();
             int randomCard = random.Next(0, deck.theDeck.Count - 1);
             player.playerHand.Add(deck.theDeck[randomCard]);
@@ -198,7 +198,7 @@ namespace CardGame
 
         public static void Joker(Player player)
         {
-            Console.WriteLine(player + " got a Joker card and only needs three equal suits to win!");
+            Console.WriteLine(player.name + " got a Joker card and only needs three equal suits to win!");
             player.HasJoker = true;
         }
 
