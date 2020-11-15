@@ -62,23 +62,28 @@ namespace CardGame
             Player player1 = new Player();
             player1.name = "Player1";
             players.Add(player1);
-            if (amountOfPlayers >= 2)
+            if (amountOfPlayers == 2)
             {
                 Player player2 = new Player();
                 player2.name = "Player2";
                 players.Add(player2);
             }
-            if (amountOfPlayers >= 3)
+            else if (amountOfPlayers == 3)
             {
                 Player player3 = new Player();
                 player3.name = "Player3";
                 players.Add(player3);
             }
-            if (amountOfPlayers >= 4)
+            else if (amountOfPlayers == 4)
             {
                 Player player4 = new Player();
                 player4.name = "Player4";
                 players.Add(player4);
+            }
+            else
+            {
+                Console.WriteLine("Please input a number between 2 and 4");
+                AssignPlayers();
             }
         }
 
