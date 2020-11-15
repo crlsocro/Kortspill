@@ -46,8 +46,8 @@ public class Card
         Joker
     }
 
-    public string ToString(Card card)
+    override public string ToString()
     {
-        return card.rank + " of " + card.suit;
+        return rank + " of " + suit;
     }
 }

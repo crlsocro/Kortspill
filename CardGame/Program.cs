@@ -45,7 +45,7 @@ namespace CardGame
                     Random rnd = new Random();
                     int randomnum = rnd.Next(0, deck.theDeck.Count);
                     players[j].playerHand.Add(deck.theDeck[randomnum]);
-                    Console.WriteLine(players[j].name + ": Got " + deck.theDeck[randomnum].ToString(deck.theDeck[randomnum]));
+                    Console.WriteLine(players[j].name + " got: " + deck.theDeck[randomnum].ToString(/*deck.theDeck[randomnum]*/));
                     deck.theDeck.RemoveAt(randomnum);
                 }
             }
@@ -94,11 +94,11 @@ namespace CardGame
             {
                 if (players[i].playerHand[0].suit == players[i].playerHand[1].suit & players[i].playerHand[0].suit == players[i].playerHand[2].suit && players[i].playerHand[0].suit == players[i].playerHand[3].suit)
                 {
-                    Console.WriteLine(players[i].name + "won!!");
-                    Console.WriteLine(players[i].playerHand[0].ToString(players[i].playerHand[0]));
-                    Console.WriteLine(players[i].playerHand[1].ToString(players[i].playerHand[1]));
-                    Console.WriteLine(players[i].playerHand[2].ToString(players[i].playerHand[2]));
-                    Console.WriteLine(players[i].playerHand[3].ToString(players[i].playerHand[3]));
+                    Console.WriteLine(players[i].name + " won!!");
+                    Console.WriteLine(players[i].playerHand[0].ToString(/*players[i].playerHand[0]*/));
+                    Console.WriteLine(players[i].playerHand[1].ToString(/*players[i].playerHand[1]*/));
+                    Console.WriteLine(players[i].playerHand[2].ToString(/*players[i].playerHand[2]*/));
+                    Console.WriteLine(players[i].playerHand[3].ToString(/*players[i].playerHand[3]*/));
                     return true;
                 }
             }
@@ -121,12 +121,12 @@ namespace CardGame
                 }
                 if (deck.theDeck.Count > 0)
                 {
-                    Console.WriteLine(players[randomPlayer].name + ": Got " + deck.theDeck[randomCard].ToString(deck.theDeck[randomCard]));
+                    Console.WriteLine(players[randomPlayer].name + " got: " + deck.theDeck[randomCard].ToString(/*deck.theDeck[randomCard]*/));
                 }
                 TossCard(players[randomPlayer]);
                 deck.theDeck.RemoveAt(randomCard);
                 //............SLOW MODE............Simulates irl time
-                Thread.Sleep(500);
+                //Thread.Sleep(500);
 
             }
 
@@ -150,6 +150,7 @@ namespace CardGame
             if (player.playerHand[0].suit != (Card.Suit)amountOfSuitsInPlayerHand[3])
             {
                 deck.theDeck.Add(player.playerHand[0]);
+                Console.WriteLine(player + " tossed card: " + player.playerHand[0].ToString()); ;
                 player.playerHand.RemoveAt(0);
             } else
             {
@@ -171,11 +172,13 @@ namespace CardGame
 
         public static void Quarantine(Player player)
         {
+            Console.WriteLine(player + " got a Quarantine card and will be skipped next turn!");
             player.SkipThisPlayer = true;
         }
 
         public static void Bomb(Player player)
         {
+            Console.WriteLine(player + " got a Bomb card and must hand in all his cards!");
             for (int i = 0; i < player.playerHand.Count; i++)
             {
                 player.playerHand.RemoveAt(i);
@@ -187,6 +190,7 @@ namespace CardGame
 
         public static void Vulture(Player player)
         {
+            Console.WriteLine(player + " got a Vulture card and gets an extra card!");
             Random random = new Random();
             int randomCard = random.Next(0, deck.theDeck.Count - 1);
             player.playerHand.Add(deck.theDeck[randomCard]);
@@ -194,6 +198,7 @@ namespace CardGame
 
         public static void Joker(Player player)
         {
+            Console.WriteLine(player + " got a Joker card and only needs three equal suits to win!");
             player.HasJoker = true;
         }
 
