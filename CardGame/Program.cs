@@ -153,11 +153,11 @@ namespace CardGame
             if (player.playerHand[0].suit != (Card.Suit)amountOfSuitsInPlayerHand[3])
             {
                 deck.theDeck.Add(player.playerHand[0]);
-                Console.WriteLine(player.name + " tossed card: " + player.playerHand[0].ToString()); ;
+                Console.WriteLine(player.name + " tossed card: " + player.playerHand[0].ToString());
                 player.playerHand.RemoveAt(0);
             } else
             {
-                Console.WriteLine(player.name + " tossed card: " + player.playerHand[0].ToString()); ;
+                Console.WriteLine(player.name + " tossed card: " + player.playerHand[0].ToString());
                 deck.theDeck.Add(player.playerHand[1]);
                 player.playerHand.RemoveAt(1);
             }
