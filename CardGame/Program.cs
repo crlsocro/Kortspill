@@ -59,22 +59,24 @@ namespace CardGame
             //string[] playerAssignments = { "player1", "player2", "player3", "player4" };
             
             //REPLACE WITH FOR LOOP, THIS IS A VERY KRISE LØSNING
-            Player player1 = new Player();
-            player1.name = "Player1";
-            players.Add(player1);
-            if (amountOfPlayers == 2)
+
+            if (amountOfPlayers >= 2)
             {
+                Player player1 = new Player();
+                player1.name = "Player1";
+                players.Add(player1);
+
                 Player player2 = new Player();
                 player2.name = "Player2";
                 players.Add(player2);
             }
-            else if (amountOfPlayers == 3)
+            if (amountOfPlayers >= 3)
             {
                 Player player3 = new Player();
                 player3.name = "Player3";
                 players.Add(player3);
             }
-            else if (amountOfPlayers == 4)
+            if (amountOfPlayers >= 2 && amountOfPlayers < 5)
             {
                 Player player4 = new Player();
                 player4.name = "Player4";
