@@ -193,7 +193,7 @@ namespace CardGame
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(player.name + " got a Bomb card and must hand in all his cards!");
             Console.ResetColor();
-            for (int i = 0; i < player.Hand.Count -1; i++)
+            for (int i = 0; i < player.Hand.Count; i++)
             {
                 Card randomCard = SelectARandomCard();
                 player.Hand.Add(randomCard);
