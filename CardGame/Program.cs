@@ -197,9 +197,9 @@ namespace CardGame
             {
                 Card randomCard = SelectARandomCard();
                 player.Hand.Add(randomCard);
-                TossCard(player);
-                //player.Hand.RemoveAt(i);
                 Console.WriteLine(player.name + " got: " + randomCard.ToString());
+                player.Hand.RemoveAt(i);
+                Console.WriteLine(player.name + " tossed: " + player.Hand[i]);
             }
         }
 

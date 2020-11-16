@@ -1,7 +1,5 @@
-using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CardGame;
-using Microsoft.VisualStudio.TestPlatform.TestHost;
 
 namespace CardGameTest
 {
@@ -32,7 +30,7 @@ namespace CardGameTest
             player.Hand.Add(c3);
             player.Hand.Add(c4);
 
-            Assert.AreEqual(deck.theDeck[0], card);
+            Assert.AreEqual(player.Hand, (c1, c2, c3, c4));
         }
     }
 }
