@@ -87,22 +87,17 @@ namespace CardGame
         {
             for (int i = 0; i < amountOfPlayers; i++)
             {
+                List<int> amountOfSuitsInHand = SuitAmounts(players[i]);
+                //For loop to cycle thru player cards
+                amountOfSuitsInHand.Sort();
                 Suit SuitToTest = players[i].Hand[0].suit;
-                if (SuitToTest == players[i].Hand[1].suit &&
-                    SuitToTest == players[i].Hand[2].suit &&
-                    SuitToTest == players[i].Hand[3].suit)
+                if (amountOfSuitsInHand[3] == 4)
                 {
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("===============================");
-                    Console.WriteLine("<<<----- " + players[i].name.ToUpper() + " WON!! ----->>>");
-                    Console.WriteLine("===============================");
-                    Console.ResetColor();
-                    Console.WriteLine(players[i].name + "'s hand:");
-                    Console.WriteLine(" * " + players[i].Hand[0].ToString());
-                    Console.WriteLine(" * " + players[i].Hand[1].ToString());
-                    Console.WriteLine(" * " + players[i].Hand[2].ToString());
-                    Console.WriteLine(" * " + players[i].Hand[3].ToString());
-                    
+                    VictoryMessage(players[i]);
+                    return true;
+                }else if (amountOfSuitsInHand[3] == 3 && players[i].HasJoker)
+                {
+                    VictoryMessage(players[i]);
                     return true;
                 }
             }
@@ -146,16 +141,8 @@ namespace CardGame
 
         public static void TossCard(Player player)
         {
-            List<int> amountOfSuitsInHand = new List<int>{0,0,0,0};
+            List<int> amountOfSuitsInHand = SuitAmounts(player);
             //For loop to cycle thru player cards
-            for (int j = 0; j < player.Hand.Count; j++)
-            {
-                if (player.Hand[j].suit == (Suit)0) { amountOfSuitsInHand[0]++; }
-                if (player.Hand[j].suit == (Suit)1) { amountOfSuitsInHand[1]++; }
-                if (player.Hand[j].suit == (Suit)2) { amountOfSuitsInHand[2]++; }
-                if (player.Hand[j].suit == (Suit)3) { amountOfSuitsInHand[3]++; }
-            }
-
             amountOfSuitsInHand.Sort();
             if (player.Hand[0].suit != (Suit)amountOfSuitsInHand[3])
             {
@@ -240,6 +227,46 @@ namespace CardGame
         {
             int randomCard = rnd.Next(0, deck.theDeck.Count - 1);
             return deck.theDeck[randomCard];
+        }
+
+        //Made this into a function so the code doesn't have to be repeated
+        public static void VictoryMessage(Player player)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("===============================");
+            Console.WriteLine("<<<----- " + player.name.ToUpper() + " WON!! ----->>>");
+            Console.WriteLine("===============================");
+            Console.ResetColor();
+            Console.WriteLine(player.name + "'s hand:");
+            for (int i = 0; i < player.Hand.Count; i++)
+            {
+                if(player.Hand[i].specialty != (Specialty)4)
+                {
+                    Console.WriteLine(" * " + player.Hand[i].ToString());
+                }
+                else
+                {
+                    Console.WriteLine(" * " + player.Hand[i].ToString() + " (Joker)");
+                }
+            }/*
+            Console.WriteLine(" * " + player.Hand[0].ToString());
+            Console.WriteLine(" * " + player.Hand[1].ToString());
+            Console.WriteLine(" * " + player.Hand[2].ToString());
+            Console.WriteLine(" * " + player.Hand[3].ToString());*/
+        }
+
+        public static List<int> SuitAmounts(Player player)
+        {
+            List<int> amountOfSuitsInHand = new List<int> { 0, 0, 0, 0 };
+            //For loop to cycle thru player cards
+            for (int j = 0; j < player.Hand.Count; j++)
+            {
+                if (player.Hand[j].suit == (Suit)0) { amountOfSuitsInHand[0]++; }
+                if (player.Hand[j].suit == (Suit)1) { amountOfSuitsInHand[1]++; }
+                if (player.Hand[j].suit == (Suit)2) { amountOfSuitsInHand[2]++; }
+                if (player.Hand[j].suit == (Suit)3) { amountOfSuitsInHand[3]++; }
+            }
+            return amountOfSuitsInHand;
         }
 
         //TODO a function to reset all players joker and quarantine bools
