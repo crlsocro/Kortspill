@@ -11,7 +11,6 @@ namespace CardGame
         public static List<Player> players = new List<Player>();
         public static Random rnd = new Random();
         public static Player playerToSkip;
-        //public bool quarantine
 
         private static Deck deck = new Deck();
         private static Player player2 = new Player();
