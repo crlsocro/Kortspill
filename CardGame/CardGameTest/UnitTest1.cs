@@ -10,7 +10,7 @@ namespace CardGameTest
         public void TestIfDeckIsCreatedCorrectly()
         {
             Deck deck = new Deck();
-            deck.createDeck();
+            deck.CreateDeck();
 
             Card card = new Card((Card.Suit)0, (Card.Rank)0, (Card.Specialty)0);
             Assert.AreEqual(deck.theDeck[0], card);

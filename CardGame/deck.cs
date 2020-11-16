@@ -6,15 +6,11 @@ using static CardGame.Program;
 
 public class Deck
 {
-
+	//List
 	public List<Card> theDeck = new List<Card>();
 
 	public List<Card> CreateDeck()
 	{
-
-		//Storing all the cards
-			
-
 		//Filling the deck. Using the Card class to assign suit and rank
 		for (int i = 0; i < 13; i++)
 		{
