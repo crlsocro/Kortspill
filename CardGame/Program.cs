@@ -130,7 +130,7 @@ namespace CardGame
                     TossCard(randomPlayer);
                     Console.WriteLine(randomPlayer.name + " got: " + randomCard.ToString());
                 }
-                TossCard(randomPlayer);
+                //TossCard(randomPlayer);
                 deck.theDeck.Remove(randomCard);
                 //............SLOW MODE............Simulates irl time
                 //Thread.Sleep(500);
