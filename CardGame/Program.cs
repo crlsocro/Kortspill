@@ -121,14 +121,14 @@ namespace CardGame
                 Player randomPlayer = SelectRandomPlayer();
                 Card randomCard = SelectARandomCard();
                 randomPlayer.Hand.Add(randomCard);
-                if (randomCard.specialty != 0)
-                {
-                    PlayerHasSpecial(randomCard, randomPlayer);
-                }
                 if (deck.theDeck.Count > 0)
                 {
                     TossCard(randomPlayer);
                     Console.WriteLine(randomPlayer.name + " got: " + randomCard.ToString());
+                }
+                if (randomCard.specialty != 0)
+                {
+                    PlayerHasSpecial(randomCard, randomPlayer);
                 }
                 //TossCard(randomPlayer);
                 deck.theDeck.Remove(randomCard);
@@ -193,7 +193,7 @@ namespace CardGame
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(player.name + " got a Bomb card and must hand in all his cards!");
             Console.ResetColor();
-            for (int i = 0; i < player.Hand.Count; i++)
+            for (int i = 0; i < player.Hand.Count -1; i++)
             {
                 Card randomCard = SelectARandomCard();
                 player.Hand.Add(randomCard);
@@ -288,13 +288,11 @@ namespace CardGame
         //TODO prevent players from tossing joker card
 
         /*
-        * Doesn't check joker card
-        * Bomb card gives players 6 cards, trur ej
+        * Bomb card gives players 6 cards, tror jeg
         * Quarantine card skipping a player is buggy
-        * Random functions seems to favor player1
         * Victory function rarely runs twice
         * Players can toss the same card they just got(allow?)
-        * 
+        * Joker card act as a 3-suit-and-joker-to-win card instead of as a any-color card
         * 
         */
     }
