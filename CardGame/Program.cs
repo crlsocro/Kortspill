@@ -12,11 +12,8 @@ namespace CardGame
         public static Random rnd = new Random();
         public static Player playerToSkip;
 
-        private static Deck deck = new Deck();
-        private static Player player2 = new Player();
-        private static Player player3 = new Player();
-        private static Player player4 = new Player();
-        private static int amountOfCardsForEachPlayer = 4;
+        private static readonly Deck deck = new Deck();
+        private static readonly int amountOfCardsForEachPlayer = 4;
 
         static void Main(string[] args)
         {
@@ -26,7 +23,7 @@ namespace CardGame
             GameLoop();
         }
 
-        public static void dealInitialCards()
+        public static void DealInitialCards()
         {
             for (int i = 0; i < amountOfCardsForEachPlayer; i++)
             {
@@ -76,8 +73,8 @@ namespace CardGame
 
         public static void GameStart()
         {
-            deck.createDeck();
-            dealInitialCards();
+            deck.CreateDeck();
+            DealInitialCards();
         }
 
         public static bool CheckVictories()
@@ -87,7 +84,6 @@ namespace CardGame
                 List<int> amountOfSuitsInHand = SuitAmounts(players[i]);
                 //For loop to cycle thru player cards
                 amountOfSuitsInHand.Sort();
-                Suit SuitToTest = players[i].Hand[0].suit;
                 if (amountOfSuitsInHand[3] == 4)
                 {
                     VictoryMessage(players[i]);
@@ -155,9 +151,6 @@ namespace CardGame
 
         public static void PlayerHasSpecial(Card card, Player player)
         {
-            Random rnd = new Random();
-            int randomSpecial = rnd.Next(0, 3);
-            
                 if (card.specialty == (Specialty)1) { Vulture(player); }
                 if (card.specialty == (Specialty)2) { Bomb(player); }
                 if (card.specialty == (Specialty)3) { Quarantine(player); }

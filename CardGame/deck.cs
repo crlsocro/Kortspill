@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using static Card;
+using static CardGame.Program;
 
 public class Deck
 {
 
 	public List<Card> theDeck = new List<Card>();
 
-	public List<Card> createDeck()
+	public List<Card> CreateDeck()
 	{
 
 		//Storing all the cards
@@ -22,15 +23,12 @@ public class Deck
                theDeck.Add(new Card( (Card.Suit)j, (Card.Rank)i, (Card.Specialty)0 ));
 			}
 		}
-		selectSpecialtyCards();
+		SelectSpecialtyCards();
 		return theDeck;
 	}
 
-	void selectSpecialtyCards()
+	void SelectSpecialtyCards()
     {
-
-		//Rerunning the function if two are the same is a terrible solution
-		Random rnd = new Random();
 		int rndVulture = rnd.Next(0, 52);
 		theDeck[rndVulture].specialty = (Specialty)1;
 
@@ -39,21 +37,21 @@ public class Deck
         {
 			theDeck[rndBomb].specialty = (Specialty)2;
 		}
-		else { selectSpecialtyCards(); }
+		else { SelectSpecialtyCards(); }
 
 		int rndQuarantine = rnd.Next(0, 52);
 		if (rndQuarantine != rndVulture || rndQuarantine != rndBomb)
 		{
 			theDeck[rndQuarantine].specialty = (Specialty)3;
         }
-        else{selectSpecialtyCards();}
+        else{SelectSpecialtyCards();}
 
 		int rndJoker = rnd.Next(0, 52);
 		if (rndJoker != rndVulture || rndJoker != rndBomb || rndJoker != rndQuarantine)
 		{
 			theDeck[rndJoker].specialty = (Specialty)4;
 		}
-		else { selectSpecialtyCards(); }
+		else { SelectSpecialtyCards(); }
 	}
 	
 }

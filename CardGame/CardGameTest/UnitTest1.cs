@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CardGame;
 
@@ -10,7 +11,7 @@ namespace CardGameTest
         public void TestIfDeckIsCreatedCorrectly()
         {
             Deck deck = new Deck();
-            deck.createDeck();
+            deck.CreateDeck();
 
             Card card = new Card((Card.Suit)0, (Card.Rank)0, (Card.Specialty)0);
             Assert.AreEqual(deck.theDeck[0], card);
@@ -19,6 +20,9 @@ namespace CardGameTest
         [TestMethod]
         public void TestIfTossingRightCard()
         {
+            Deck deck = new Deck();
+            deck.CreateDeck();
+
             Card c1 = new Card(Card.Suit.Clubs, Card.Rank.Ace, Card.Specialty.None);
             Card c2 = new Card(Card.Suit.Diamonds, Card.Rank.Two, Card.Specialty.None);
             Card c3 = new Card(Card.Suit.Clubs, Card.Rank.Three, Card.Specialty.None);
@@ -30,7 +34,7 @@ namespace CardGameTest
             player.Hand.Add(c3);
             player.Hand.Add(c4);
 
-            Assert.AreEqual(player.Hand, (c1, c2, c3, c4));
+            Assert.AreEqual(deck.theDeck[0], card);
         }
     }
 }
