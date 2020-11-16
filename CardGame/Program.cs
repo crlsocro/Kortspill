@@ -7,7 +7,6 @@ namespace CardGame
 {
     class Program
     {
-
         public static int amountOfPlayers;
         public static List<Player> players = new List<Player>();
         public static Random rnd = new Random();
@@ -24,17 +23,8 @@ namespace CardGame
             AssignPlayers();
             GameStart();
             CheckVictories();
-            Console.WriteLine(deck.theDeck.Count);
+            //Console.WriteLine(deck.theDeck.Count);
             GameLoop();
-            /*
-             * BUG: PLAYERHAND HAS 6 CARDS
-             * BUG: PLAYERHAND HAS 6 CARDS
-             * BUG: PLAYERHAND HAS 6 CARDS
-             * BUG: PLAYERHAND HAS 6 CARDS
-             * BUG: PLAYERHAND HAS 6 CARDS
-             * Getting these cards are not written to console??????
-            */
-
         }
 
         public static void dealInitialCards()
@@ -45,7 +35,7 @@ namespace CardGame
                 {
                     //Random rnd = new Random();
                     Card randomCard = SelectARandomCard();
-                    players[j].playerHand.Add(randomCard);
+                    players[j].Hand.Add(randomCard);
                     Console.WriteLine(players[j].name + " got: " + randomCard.ToString());
                     deck.theDeck.Remove(randomCard);
                     //Thread.Sleep(100);
@@ -97,28 +87,45 @@ namespace CardGame
         {
             for (int i = 0; i < amountOfPlayers; i++)
             {
-                if (players[i].playerHand[0].suit == players[i].playerHand[1].suit & players[i].playerHand[0].suit == players[i].playerHand[2].suit && players[i].playerHand[0].suit == players[i].playerHand[3].suit)
+                Suit SuitToTest = players[i].Hand[0].suit;
+                if (SuitToTest == players[i].Hand[1].suit &&
+                    SuitToTest == players[i].Hand[2].suit &&
+                    SuitToTest == players[i].Hand[3].suit)
                 {
-                    Console.WriteLine(players[i].name + " won!!");
-                    Console.WriteLine(players[i].playerHand[0].ToString());
-                    Console.WriteLine(players[i].playerHand[1].ToString());
-                    Console.WriteLine(players[i].playerHand[2].ToString());
-                    Console.WriteLine(players[i].playerHand[3].ToString());
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("===============================");
+                    Console.WriteLine("<<<----- " + players[i].name.ToUpper() + " WON!! ----->>>");
+                    Console.WriteLine("===============================");
+                    Console.ResetColor();
+                    Console.WriteLine(players[i].name + "'s hand:");
+                    Console.WriteLine(" * " + players[i].Hand[0].ToString());
+                    Console.WriteLine(" * " + players[i].Hand[1].ToString());
+                    Console.WriteLine(" * " + players[i].Hand[2].ToString());
+                    Console.WriteLine(" * " + players[i].Hand[3].ToString());
+                    
                     return true;
                 }
             }
-            //Console.WriteLine("nobody won");
             return false;
         }
 
         public static void GameLoop()
         {
-
+            /*
+             * 
+             * 
+             * 
+             * HEY HÅKON
+             * Legg inn alle bugs du finne nederst i Program da så har vi alt på en plass vi må fikse
+             * 
+             * 
+             * 
+             */
             while (!CheckVictories())
             {
                 Player randomPlayer = SelectRandomPlayer();
                 Card randomCard = SelectARandomCard();
-                randomPlayer.playerHand.Add(randomCard);
+                randomPlayer.Hand.Add(randomCard);
                 if (randomCard.specialty != 0)
                 {
                     PlayerHasSpecial(randomCard, randomPlayer);
@@ -139,27 +146,27 @@ namespace CardGame
 
         public static void TossCard(Player player)
         {
-            List<int> amountOfSuitsInPlayerHand = new List<int>{0,0,0,0};
+            List<int> amountOfSuitsInHand = new List<int>{0,0,0,0};
             //For loop to cycle thru player cards
-            for (int j = 0; j < player.playerHand.Count; j++)
+            for (int j = 0; j < player.Hand.Count; j++)
             {
-                if (player.playerHand[j].suit == (Suit)0) { amountOfSuitsInPlayerHand[0]++; }
-                if (player.playerHand[j].suit == (Suit)1) { amountOfSuitsInPlayerHand[1]++; }
-                if (player.playerHand[j].suit == (Suit)2) { amountOfSuitsInPlayerHand[2]++; }
-                if (player.playerHand[j].suit == (Suit)3) { amountOfSuitsInPlayerHand[3]++; }
+                if (player.Hand[j].suit == (Suit)0) { amountOfSuitsInHand[0]++; }
+                if (player.Hand[j].suit == (Suit)1) { amountOfSuitsInHand[1]++; }
+                if (player.Hand[j].suit == (Suit)2) { amountOfSuitsInHand[2]++; }
+                if (player.Hand[j].suit == (Suit)3) { amountOfSuitsInHand[3]++; }
             }
 
-            amountOfSuitsInPlayerHand.Sort();
-            if (player.playerHand[0].suit != (Suit)amountOfSuitsInPlayerHand[3])
+            amountOfSuitsInHand.Sort();
+            if (player.Hand[0].suit != (Suit)amountOfSuitsInHand[3])
             {
-                deck.theDeck.Add(player.playerHand[0]);
-                Console.WriteLine(player.name + " tossed card: " + player.playerHand[0].ToString());
-                player.playerHand.RemoveAt(0);
+                deck.theDeck.Add(player.Hand[0]);
+                Console.WriteLine(player.name + " tossed card: " + player.Hand[0].ToString());
+                player.Hand.RemoveAt(0);
             } else
             {
-                Console.WriteLine(player.name + " tossed card: " + player.playerHand[0].ToString());
-                deck.theDeck.Add(player.playerHand[1]);
-                player.playerHand.RemoveAt(1);
+                Console.WriteLine(player.name + " tossed card: " + player.Hand[0].ToString());
+                deck.theDeck.Add(player.Hand[1]);
+                player.Hand.RemoveAt(1);
             }
         }
 
@@ -177,32 +184,41 @@ namespace CardGame
 
         public static void Quarantine(Player player)
         {
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(player.name + " got a Quarantine card and will be skipped next turn!");
+            Console.ResetColor();
             player.SkipThisPlayer = true;
         }
 
         public static void Bomb(Player player)
         {
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(player.name + " got a Bomb card and must hand in all his cards!");
-            for (int i = 0; i < player.playerHand.Count; i++)
+            Console.ResetColor();
+            for (int i = 0; i < player.Hand.Count; i++)
             {
                 Card randomCard = SelectARandomCard();
-                player.playerHand.RemoveAt(i);
-                player.playerHand.Add(randomCard);
+                player.Hand.Add(randomCard);
+                player.Hand.RemoveAt(i);
                 Console.WriteLine(player.name + " got: " + randomCard.ToString());
+                Console.WriteLine(player.name + " tossed: " + player.Hand[i].ToString());
             }
         }
 
         public static void Vulture(Player player)
         {
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine(player.name + " got a Vulture card and gets an extra card!");
+            Console.ResetColor();
             Card randomCard = SelectARandomCard();
-            player.playerHand.Add(randomCard);
+            player.Hand.Add(randomCard);
         }
 
         public static void Joker(Player player)
         {
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine(player.name + " got a Joker card and only needs three equal suits to win!");
+            Console.ResetColor();
             player.HasJoker = true;
         }
 
@@ -227,6 +243,19 @@ namespace CardGame
         }
 
         //TODO a function to reset all players joker and quarantine bools
-        //TODO
+        //TODO add a int for every equal card in players hand then check if the amount is four(/ 3 + joker)
+        //TODO put the special card message after the "got" message
+        //TODO prevent players from tossing joker card
+
+        /*
+        * Doesn't check joker card
+        * Bomb card gives players 6 cards, trur ej
+        * Quarantine card skipping a player is buggy
+        * Random functions seems to favor player1
+        * Victory function rarely runs twice
+        * Players can toss the same card they just got(allow?)
+        * 
+        * 
+        */
     }
 }

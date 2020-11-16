@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class Player
 {
-    public List<Card> playerHand = new List<Card>();
+    public List<Card> Hand = new List<Card>();
     public bool SkipThisPlayer = false;
     public bool HasJoker = false;
     public string name;
