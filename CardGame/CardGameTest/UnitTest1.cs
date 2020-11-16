@@ -1,10 +1,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using CardGame;
 
-namespace CardGame
+namespace CardGameTest
 {
     [TestClass]
-    public class ProgramTests
+    public class UnitTest1
     {
         [TestMethod]
         public void TestIfDeckIsCreatedCorrectly()
@@ -17,6 +16,3 @@ namespace CardGame
         }
     }
 }
-
-//Hold over TestClass ? bruk sann "tips" greier til ? installere test frameworket
-//https://docs.microsoft.com/en-us/visualstudio/test/walkthrough-creating-and-running-unit-tests-for-managed-code?view=vs-2019
