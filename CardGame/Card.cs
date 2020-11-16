@@ -48,6 +48,24 @@ public class Card
 
     override public string ToString()
     {
-        return rank + " of " + suit;
+        if (specialty == (Specialty)1)
+        {
+            return rank + " of " + suit + " special: " + specialty;
+        }
+        else if(specialty == (Specialty)2)
+        {
+            return rank + " of " + suit + " special: " + specialty;
+        }
+        else if (specialty == (Specialty)3)
+        {
+            return rank + " of " + suit + " special: " + specialty;
+        }
+        else if (specialty == (Specialty)4)
+        {
+            return rank + " of " + suit + " special: " + specialty;
+        } else
+        {
+            return rank + " of " + suit;
+        }
     }
 }

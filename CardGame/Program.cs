@@ -173,10 +173,10 @@ namespace CardGame
             Random rnd = new Random();
             int randomSpecial = rnd.Next(0, 3);
             
-                if (card.specialty == (Specialty)0) { Vulture(player); }
-                if (card.specialty == (Specialty)1) { Bomb(player); }
-                if (card.specialty == (Specialty)2) { Quarantine(player); }
-                if (card.specialty == (Specialty)3) { Joker(player); }
+                if (card.specialty == (Specialty)1) { Vulture(player); }
+                if (card.specialty == (Specialty)2) { Bomb(player); }
+                if (card.specialty == (Specialty)3) { Quarantine(player); }
+                if (card.specialty == (Specialty)4) { Joker(player); }
            
         }
 
