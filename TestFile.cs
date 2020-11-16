@@ -10,7 +10,7 @@ namespace CardGame
             deck.createDeck();
 
             Card card = ;
-
+            Assert.AreEqual(expected, actual, 0.001, "Account not debited correctly");
         }
     }
 }
