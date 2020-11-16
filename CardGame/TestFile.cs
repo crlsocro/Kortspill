@@ -16,3 +16,5 @@ namespace CardGame
         }
     }
 }
+
+//Hold over TestClass å bruk sann "tips" greier til å installere test frameworket
