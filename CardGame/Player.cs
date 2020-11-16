@@ -8,7 +8,6 @@ public class Player
     public bool SkipThisPlayer = false;
     public bool HasJoker = false;
     public string name;
-    //Use getter and setter for SkipThisPlayer?
 }
     
 

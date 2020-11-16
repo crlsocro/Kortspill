@@ -10,7 +10,6 @@ namespace CardGame
         public static int amountOfPlayers;
         public static List<Player> players = new List<Player>();
         public static Random rnd = new Random();
-        //public bool quarantine
 
         private static Deck deck = new Deck();
         private static Player player2 = new Player();
@@ -23,7 +22,6 @@ namespace CardGame
             AssignPlayers();
             GameStart();
             CheckVictories();
-            //Console.WriteLine(deck.theDeck.Count);
             GameLoop();
         }
 
@@ -33,12 +31,10 @@ namespace CardGame
             {
                 for (int j = 0; j < amountOfPlayers; j++)
                 {
-                    //Random rnd = new Random();
                     Card randomCard = SelectARandomCard();
                     players[j].Hand.Add(randomCard);
                     Console.WriteLine(players[j].name + " got: " + randomCard.ToString());
                     deck.theDeck.Remove(randomCard);
-                    //Thread.Sleep(100);
                 }
             }
         }
@@ -106,16 +102,6 @@ namespace CardGame
 
         public static void GameLoop()
         {
-            /*
-             * 
-             * 
-             * 
-             * HEY HÅKON
-             * Legg inn alle bugs du finne nederst i Program da så har vi alt på en plass vi må fikse
-             * 
-             * 
-             * 
-             */
             while (!CheckVictories())
             {
                 Player randomPlayer = SelectRandomPlayer();
@@ -130,10 +116,8 @@ namespace CardGame
                 {
                     PlayerHasSpecial(randomCard, randomPlayer);
                 }
-                //TossCard(randomPlayer);
+
                 deck.theDeck.Remove(randomCard);
-                //............SLOW MODE............Simulates irl time
-                //Thread.Sleep(500);
 
             }
 
@@ -263,11 +247,7 @@ namespace CardGame
                     Console.WriteLine(" * " + player.Hand[i].ToString() + " (Joker)");
                     Console.WriteLine(player.Hand.Count);
                 }
-            }/*
-            Console.WriteLine(" * " + player.Hand[0].ToString());
-            Console.WriteLine(" * " + player.Hand[1].ToString());
-            Console.WriteLine(" * " + player.Hand[2].ToString());
-            Console.WriteLine(" * " + player.Hand[3].ToString());*/
+            }
         }
 
         public static List<int> SuitAmounts(Player player)
@@ -283,14 +263,7 @@ namespace CardGame
             }
             return amountOfSuitsInHand;
         }
-
-        //TODO a function to reset all players joker and quarantine bools
-        //TODO add a int for every equal card in players hand then check if the amount is four(/ 3 + joker)
-        //TODO put the special card message after the "got" message
-        //TODO prevent players from tossing joker card
-
         /*
-        * Bomb card gives players 6 cards, tror jeg
         * Quarantine card skipping a player is buggy
         * Victory function rarely runs twice
         * Players can toss the same card they just got(allow?)
