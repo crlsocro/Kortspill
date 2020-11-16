@@ -127,6 +127,7 @@ namespace CardGame
                 }
                 if (deck.theDeck.Count > 0)
                 {
+                    TossCard(randomPlayer);
                     Console.WriteLine(randomPlayer.name + " got: " + randomCard.ToString());
                 }
                 TossCard(randomPlayer);
