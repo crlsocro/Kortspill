@@ -10,6 +10,7 @@ namespace CardGame
         public static int amountOfPlayers;
         public static List<Player> players = new List<Player>();
         public static Random rnd = new Random();
+        public static Player playerToSkip;
         //public bool quarantine
 
         private static Deck deck = new Deck();
@@ -185,7 +186,7 @@ namespace CardGame
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(player.name + " got a Quarantine card and will be skipped next turn!");
             Console.ResetColor();
-            player.SkipThisPlayer = true;
+            playerToSkip = player;
         }
 
         public static void Bomb(Player player)
@@ -225,13 +226,13 @@ namespace CardGame
         public static Player SelectRandomPlayer()
         {
             int randomPlayer = rnd.Next(0, amountOfPlayers);
-            if (players[randomPlayer].SkipThisPlayer)
+            if (playerToSkip == players[randomPlayer])
             {
-                players[randomPlayer].SkipThisPlayer = false;
                 return SelectRandomPlayer();
             }
             else 
             {
+                playerToSkip = null;
                 return players[randomPlayer];
             }
         }
