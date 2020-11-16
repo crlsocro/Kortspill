@@ -144,16 +144,26 @@ namespace CardGame
             List<int> amountOfSuitsInHand = SuitAmounts(player);
             //For loop to cycle thru player cards
             amountOfSuitsInHand.Sort();
-            if (player.Hand[0].suit != (Suit)amountOfSuitsInHand[3])
+            if (player.Hand[0].suit != (Suit)amountOfSuitsInHand[3] && player.Hand[0].specialty != (Specialty)4)
             {
                 deck.theDeck.Add(player.Hand[0]);
                 Console.WriteLine(player.name + " tossed card: " + player.Hand[0].ToString());
                 player.Hand.RemoveAt(0);
-            } else
+            } else if(player.Hand[1].suit != (Suit)amountOfSuitsInHand[3] && player.Hand[1].specialty != (Specialty)4)
             {
-                Console.WriteLine(player.name + " tossed card: " + player.Hand[0].ToString());
                 deck.theDeck.Add(player.Hand[1]);
+                Console.WriteLine(player.name + " tossed card: " + player.Hand[1].ToString());
                 player.Hand.RemoveAt(1);
+            } else if (player.Hand[2].suit != (Suit)amountOfSuitsInHand[3] && player.Hand[2].specialty != (Specialty)4)
+            {
+                deck.theDeck.Add(player.Hand[2]);
+                Console.WriteLine(player.name + " tossed card: " + player.Hand[2].ToString());
+                player.Hand.RemoveAt(2);
+            } else if (player.Hand[3].suit != (Suit)amountOfSuitsInHand[3] && player.Hand[3].specialty != (Specialty)4)
+            {
+                deck.theDeck.Add(player.Hand[3]);
+                Console.WriteLine(player.name + " tossed card: " + player.Hand[3].ToString());
+                player.Hand.RemoveAt(3);
             }
         }
 
