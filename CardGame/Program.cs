@@ -253,10 +253,12 @@ namespace CardGame
                 if(player.Hand[i].specialty != (Specialty)4)
                 {
                     Console.WriteLine(" * " + player.Hand[i].ToString());
+                    Console.WriteLine(player.Hand.Count);
                 }
                 else
                 {
                     Console.WriteLine(" * " + player.Hand[i].ToString() + " (Joker)");
+                    Console.WriteLine(player.Hand.Count);
                 }
             }/*
             Console.WriteLine(" * " + player.Hand[0].ToString());
