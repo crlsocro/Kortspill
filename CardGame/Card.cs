@@ -2,10 +2,12 @@
 
 public class Card
 {
+    //All card attributes or properties
     public Suit suit;
     public Rank rank;
     public Specialty specialty;
 
+    //Card constructor
     public Card(Suit suit, Rank rank, Specialty specialty)
     {
         this.suit = suit;
@@ -13,6 +15,7 @@ public class Card
         this.specialty = specialty;
     }
 
+    //We found enums to work well here and looks cooler than lists or arrays
     public enum Suit{
         Hearts,
         Spades,
@@ -48,24 +51,6 @@ public class Card
 
     override public string ToString()
     {
-        if (specialty == (Specialty)1)
-        {
-            return rank + " of " + suit + " special: " + specialty;
-        }
-        else if(specialty == (Specialty)2)
-        {
-            return rank + " of " + suit + " special: " + specialty;
-        }
-        else if (specialty == (Specialty)3)
-        {
-            return rank + " of " + suit + " special: " + specialty;
-        }
-        else if (specialty == (Specialty)4)
-        {
-            return rank + " of " + suit + " special: " + specialty;
-        } else
-        {
-            return rank + " of " + suit;
-        }
+         return rank + " of " + suit;
     }
 }
