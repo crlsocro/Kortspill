@@ -56,19 +56,17 @@ namespace CardGame
                 player1.name = "Player1";
                 players.Add(player1);
 
-                Player player2 = new Player { name = "Player2" };
                 player2.name = "Player2";
                 players.Add(player2);
             }
             if (amountOfPlayers >= 3)
             {
-                Player player3 = new Player{ name = "Player3" };
-
+                player3.name = "player3";
                 players.Add(player3);
             }
             if (amountOfPlayers >= 2 && amountOfPlayers < 5)
             {
-                Player player4 = new Player{ name = "Player4" };
+                player4.name = "player4";
                 players.Add(player4);
             }
             else
