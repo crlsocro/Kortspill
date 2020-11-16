@@ -12,6 +12,7 @@ namespace CardGame
         public static Random rnd = new Random();
         //public bool quarantine
 
+        private static readonly Object _lock = new Object();
         private static Deck deck = new Deck();
         private static Player player2 = new Player();
         private static Player player3 = new Player();
@@ -106,6 +107,12 @@ namespace CardGame
 
         public static void GameLoop()
         {
+
+            foreach(Player player in players)
+            {
+                Thread playerThread = new Thread(() => DrawCard(player));
+                playerThread.Start();
+            }
             /*
              * 
              * 
@@ -116,27 +123,31 @@ namespace CardGame
              * 
              * 
              */
-            while (!CheckVictories())
-            {
-                Player randomPlayer = SelectRandomPlayer();
-                Card randomCard = SelectARandomCard();
-                randomPlayer.Hand.Add(randomCard);
-                if (randomCard.specialty != 0)
-                {
-                    PlayerHasSpecial(randomCard, randomPlayer);
-                }
-                if (deck.theDeck.Count > 0)
-                {
-                    Console.WriteLine(randomPlayer.name + " got: " + randomCard.ToString());
-                }
-                TossCard(randomPlayer);
-                deck.theDeck.Remove(randomCard);
-                //............SLOW MODE............Simulates irl time
-                //Thread.Sleep(500);
-
-            }
 
             Console.WriteLine(deck.theDeck.Count);
+        }
+
+        public static void DrawCard(Player player)
+        {
+            lock(_lock)
+            {
+                while (!CheckVictories())
+                {
+                    Card randomCard = SelectARandomCard();
+                    player.Hand.Add(randomCard);
+                    if (randomCard.specialty != 0)
+                    {
+                        PlayerHasSpecial(randomCard, player);
+                    }
+                    if (deck.theDeck.Count > 0)
+                    {
+                        Console.WriteLine(player.name + " got: " + randomCard.ToString());
+                    }
+                    TossCard(player);
+                    deck.theDeck.Remove(randomCard);
+                }
+            }
+
         }
 
         public static void TossCard(Player player)
