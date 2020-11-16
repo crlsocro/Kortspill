@@ -22,7 +22,7 @@ namespace CardGame
             CheckVictories();
             GameLoop();
         }
-
+        //using nester for loops to deal 4 cards to each player
         public static void DealInitialCards()
         {
             for (int i = 0; i < amountOfCardsForEachPlayer; i++)
@@ -37,7 +37,7 @@ namespace CardGame
             }
         }
 
-        
+        //determening how many players to initialize and add to a list of players
         public static void AssignPlayers()
         {
             Console.WriteLine("How many total players do you want? (2-4)");
@@ -70,13 +70,13 @@ namespace CardGame
                 AssignPlayers();
             }
         }
-
+        //clumping methods for doing the necessary methods for starting the game
         public static void GameStart()
         {
             deck.CreateDeck();
             DealInitialCards();
         }
-
+        //checking if someone won the game, if not returns false and the rounds continue
         public static bool CheckVictories()
         {
             for (int i = 0; i < amountOfPlayers; i++)
@@ -96,7 +96,7 @@ namespace CardGame
             }
             return false;
         }
-
+        //main game loop after dealing out the initial cards, checking if the current card is a special card and runs the method for special cards. 
         public static void GameLoop()
         {
             while (!CheckVictories())
@@ -120,7 +120,7 @@ namespace CardGame
 
             Console.WriteLine(deck.theDeck.Count);
         }
-
+        //method for sorting cards and tossing the least valuable for the current player
         public static void TossCard(Player player)
         {
             List<int> amountOfSuitsInHand = SuitAmounts(player);
@@ -148,7 +148,7 @@ namespace CardGame
                 player.Hand.RemoveAt(3);
             }
         }
-
+        //checking what special card the player has
         public static void PlayerHasSpecial(Card card, Player player)
         {
                 if (card.specialty == (Specialty)1) { Vulture(player); }
@@ -157,7 +157,7 @@ namespace CardGame
                 if (card.specialty == (Specialty)4) { Joker(player); }
            
         }
-
+        //code for the quarantine special card
         public static void Quarantine(Player player)
         {
             Console.ForegroundColor = ConsoleColor.Red;
@@ -165,7 +165,7 @@ namespace CardGame
             Console.ResetColor();
             playerToSkip = player;
         }
-
+        //code for the bomb special card
         public static void Bomb(Player player)
         {
             Console.ForegroundColor = ConsoleColor.Red;
@@ -182,7 +182,7 @@ namespace CardGame
                 Console.WriteLine(player.name + " tossed: " + player.Hand[i]);
             }
         }
-
+        //code for the vulture special card
         public static void Vulture(Player player)
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -191,7 +191,7 @@ namespace CardGame
             Card randomCard = SelectARandomCard();
             player.Hand.Add(randomCard);
         }
-
+        //code for the joker special card
         public static void Joker(Player player)
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -199,7 +199,7 @@ namespace CardGame
             Console.ResetColor();
             player.HasJoker = true;
         }
-
+        //selecting a random player to draw a card
         public static Player SelectRandomPlayer()
         {
             int randomPlayer = rnd.Next(0, amountOfPlayers);
@@ -213,7 +213,7 @@ namespace CardGame
                 return players[randomPlayer];
             }
         }
-
+        //selecting a random card
         public static Card SelectARandomCard()
         {
             int randomCard = rnd.Next(0, deck.theDeck.Count - 1);
@@ -243,7 +243,7 @@ namespace CardGame
                 }
             }
         }
-
+        //list for storing sorting of suits in the players hand
         public static List<int> SuitAmounts(Player player)
         {
             List<int> amountOfSuitsInHand = new List<int> { 0, 0, 0, 0 };
