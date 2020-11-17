@@ -242,6 +242,9 @@ namespace CardGame
                     Console.WriteLine(" * " + player.Hand[i].ToString() + " (Joker)");
                 }
             }
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine("<<-- A five card victory is possible due to the vulture card -->>");
+            Console.ResetColor();
             Console.ReadKey();
         }
         //list for storing sorting of suits in the players hand
