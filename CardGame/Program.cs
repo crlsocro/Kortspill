@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Threading;
 using static Card;
 
+//
+
 namespace CardGame
 {
     class Program
@@ -37,7 +39,7 @@ namespace CardGame
             }
         }
 
-        //determening how many players to initialize and add to a list of players
+        //determining how many players to initialize and add to a list of players
         public static void AssignPlayers()
         {
             Console.WriteLine("How many total players do you want? (2-4)");
@@ -199,7 +201,7 @@ namespace CardGame
             Console.ResetColor();
             player.HasJoker = true;
         }
-        //selecting a random player to draw a card
+        //selecting a random player to draw a card this is also part of the quarantine card functionality
         public static Player SelectRandomPlayer()
         {
             int randomPlayer = rnd.Next(0, amountOfPlayers);
@@ -229,6 +231,7 @@ namespace CardGame
             Console.WriteLine("===============================");
             Console.ResetColor();
             Console.WriteLine(player.name + "'s hand:");
+            //Displays the winning players hand and adds a (joker) behind the joker card to avoid confusion if a player wins with only three equal suits
             for (int i = 0; i < player.Hand.Count; i++)
             {
                 if(player.Hand[i].specialty != (Specialty)4)
@@ -257,12 +260,5 @@ namespace CardGame
             }
             return amountOfSuitsInHand;
         }
-        /*
-        * Quarantine card skipping a player is buggy
-        * Victory function rarely runs twice
-        * Players can toss the same card they just got(allow?)
-        * Joker card act as a 3-suit-and-joker-to-win card instead of as a any-color card
-        * 
-        */
     }
 }
