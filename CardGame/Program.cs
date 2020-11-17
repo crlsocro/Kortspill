@@ -120,8 +120,6 @@ namespace CardGame
                 //A function so you can somewhat see what is happening
                 Thread.Sleep(60);
             }
-
-            Console.WriteLine(deck.theDeck.Count);
         }
         //method for sorting cards and tossing the least valuable for the current player
         public static void TossCard(Player player)
