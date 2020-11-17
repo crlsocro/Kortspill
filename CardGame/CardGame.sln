@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardGame", "CardGame.csproj", "{5FF47A77-F3FB-4A85-A2A9-A3F1ADEADD0B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardGameTest", "CardGameTest\CardGameTest.csproj", "{A92A7E10-3FDC-4DB3-A66F-86E87530D06D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5FF47A77-F3FB-4A85-A2A9-A3F1ADEADD0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FF47A77-F3FB-4A85-A2A9-A3F1ADEADD0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FF47A77-F3FB-4A85-A2A9-A3F1ADEADD0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FF47A77-F3FB-4A85-A2A9-A3F1ADEADD0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A92A7E10-3FDC-4DB3-A66F-86E87530D06D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A92A7E10-3FDC-4DB3-A66F-86E87530D06D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A92A7E10-3FDC-4DB3-A66F-86E87530D06D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A92A7E10-3FDC-4DB3-A66F-86E87530D06D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
