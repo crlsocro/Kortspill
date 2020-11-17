@@ -117,7 +117,8 @@ namespace CardGame
                 }
 
                 deck.theDeck.Remove(randomCard);
-
+                //A function so you can somewhat see what is happening
+                Thread.Sleep(60);
             }
 
             Console.WriteLine(deck.theDeck.Count);
