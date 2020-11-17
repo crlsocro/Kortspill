@@ -242,6 +242,7 @@ namespace CardGame
                     Console.WriteLine(" * " + player.Hand[i].ToString() + " (Joker)");
                 }
             }
+            Console.ReadKey();
         }
         //list for storing sorting of suits in the players hand
         public static List<int> SuitAmounts(Player player)
